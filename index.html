@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Weather</title>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
@@ -10,191 +11,81 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
-    <link href="src/styles.css" rel="stylesheet" type="text/css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Oswald:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-</head>
-
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Weather App</title>
+  </head>
   <body>
     <div class="container">
       <div class="row">
-        <div class="card-group">
-          <div class="card-block" style="width: 14rem">
-      <div class="card text-bg-light">
-        <div class="card-body" style="height: 640px">
-          <p class="card-text">
-            <h1>New York</h1> 
-      <h6 
-        >Wednesday
-        <br />
-        July 27, 2022 4:00 PM
-        <br />
-        Partly cloudy
-      </h6>
-      <span class="temperature" id="temperature">82</span>
-      <span>°C</a>
-    </span>
-      <img src="images/samyrain.png" alt="scloudy" width="150" />
-      <small>
-        <br />
-        Precipitation: 0%
-        <br />
-        Humidity: 46%
-        <br />
-        Wind: 10 mph
-      </small>
-          </p>
-        </div>
-      </div>
-      </div>
-      <div class="card text-bg-light" style="max-width: 40rem">
-        <div class="card-body">
-          <p class="card-text" >
-            <div class="row justify-content-end" style="text-align:center">
-              <div class="col acol" >
-                <span class="temp" id="temp-1"> 82°F</span>
-                <div class="col ablock">
-                </div>
-                <div class="col">
-                 <span class="day-hour"> 4pm </span>
-                </div>
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <div class="overview">
+            <div class="col">
+            <h1 id="city"></h1>
+            <ul>
+              <li>Last updated at: <span id="date"></span></li>
+              <li id="description">Partly cloudy</li>
+            </ul>
+            <div class="d-flex weather-temperature">
+              <img src="" alt="Partly cloudy" id="icon"/>
+              <div>
+                <strong id="temperature"></strong
+                ><span class="units"
+                  >°C</a> 
               </div>
-              <div class="col bcol">
-                <span class="temp" id="temp-2">84°F</span>
-                <div class="col bblock">
-                </div>
-                <div class="col" >
-                  <span class="day-hour">5pm
-                </div>
-              </div> 
-              <div class="col bcol">
-                <span class="temp" id="temp-3">84°F</span>
-                <div class="col bblock">
-                </div>
-                <div class="col" >
-                  <span class="day-hour"> 6pm</span>
-                </div>
-              </div>
-              <div class="col ccol" >
-                <span class="temp" id="temp-4">85°F</span>
-                <div class="col cblock">
-                </div>
-                <div class="col" >
-                  <span class="day-hour">7pm</span>
-                </div>
-              </div>
-              <div class="col ccol">
-                <span class="temp" id="temp-5">85°F</span>
-                <div class="col cblock">
-                </div>
-                <div class="col" >
-                  <span class="day-hour">8pm</span>
-                </div>
-              </div>
-              <div class="col bcol">
-                <span class="temp" id="temp-6">84°F</span>
-                <div class="col bblock">
-                </div>
-                <div class="col" >
-                  <span class="day-hour">9pm</span>
-                </div>
-              </div>
-              <div class="col bcol" >
-                <span class="temp" id="temp-7">84°F</span>
-                <div class="col bblock">
-                </div>
-                <div class="col">
-                  <span class="day-hour">10pm</span>
-                </div>
-              </div>
-              <div class="col acol">
-                <span class="temp" id="temp-8">82°F</span>
-                <div class="col ablock">
-                </div>
-                <div class="col" >
-                  <span class="day-hour">11pm</span>
-                </div>
-              </div>
-              <div class="col dcol">
-                <span class="temp" id="temp-9">79°F</span> 
-                <div class="col dblock">
-                </div>
-                <div class="col" >
-                  <span class="day-hour"> 12pm</span>
-                </div>
-              </div>
+            </div> 
+            <div class="row">
+              <div class="conditions">
+              <ul>
+                <li>Humidity: <span id="humidity">32</span>%</li>
+                <li>Wind: <span id="wind">23</span> m/h</li>
+              </ul>
             </div>
-          </p>
-        <hr/>
-        <div class="row">
-          <div class="col">
-            <div class="card week">
-          <img class="card-img-top"src="images/samycloud.png" alt="scloudy" width="90" />
-          <div class="col text-center">
-            <small class="days"> Thu </small><br />
-            <small>91°|73°F</small>
           </div>
-        </div>
-        </div>
-        <div class="col">
-          <div class="card week">
-          <img class="card-img-top"src="images/sunny.com.png" alt="scloudy" width="90" />
-          <div class="col text-center">
-            <small class="days"> Fri </small><br />
-              <small> 88°|68°F</small> 
               
           </div>
-        </div>
-        </div>
-        <div class="col">
-          <div class="card week">
-          <img class="card-img-top"src="images/samycloud.png" alt="scloudy" width="90" />
-          <div class="col text-center">
-            <small class="days"> Sat </small>
-            <br />
-              <small> 87°|68°F
-              </small>
+          <div class="card hourly-forecast">
+            <div class="card-body">
+              <div class="weather-forecast-hourly" id="forecast-hourly"></div>
+            </div>
+          </div>
+            <div class="card">
+              <div class="card-body">
+            <div class="weather-forecast" id="forecast"></div> 
+           </div>
+           <form id="search-form" class="mb-3">
+            <div class="col-3">
+              <input
+                type="search"
+                placeholder="Type a city.."
+                class="form-control"
+                id="city-input"
+                autocomplete="off"
+              />
+            </div>
+            <div class="col-3">
+              <input
+                type="submit"
+                value="Search"
+                class="btn btn-primary w-100"
+              />
+          </div>
+        </form> 
           </div>
         </div>
-        </div>
-        <div class="col">
-          <div class="card week">
-          <img class="card-img-top"src="images/samyrain.png" alt="scloudy" width="90" />
-          <div class="col text-center">
-            <small class="days"> Sun  </small><br />
-              <small> 88°|72°F
-              </small>
-          </div>
-        </div>
-        </div>
-        <div class="col">
-          <div class="card week">
-          <img class="card-img-top"src="images/rain.png" alt="scloudy" width="90" />
-          <div class="col text-center">
-            <small class="days"> Mon </small><br />
-              <small>86°|73°F
-              </small>
-          </div>  
-        </div>
+      </div>
+        <small>
+          <a
+            class="source-link"
+            href="https://github.com/AnastasiaBokinsky/vanilla-weather-app"
+            target="_blank"
+            >Open-source code</a
+          >
+          by Anastasiia Boiko
+        </small>
       </div>
     </div>
-      <br />
-      <br />
-      <div class="search-engine">
-      <form class="search-form" id="searching-form">
-        <input id = "city-search" class="city-search" type="search" placeholder="Type a city..." autofocus="on" autocomplete="off" class="form-control shadow-s m">
-        <br />
-        <br />
-        <input class ="city-submit" id="city-submit" type="submit" value="Change city">
-      </form></div>
-      <br />
-      <button id="myLocation">Current location</button>
-        </div>
-      </div>
-    </div>
-    <span><a class="code-link" href="https://github.com/AnastasiaBokinsky/MyWeatherProject">Open source code </a>by Anastasiia Boiko</span>
-   <script src="src/index.js"></script>
+    <script src="src/index.js"></script>
   </body>
-</html>
+</html> 
