@@ -27,12 +27,22 @@ function formatDay(timestamp) {
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   return days[day];
 }
+function formatHour(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let hours = date.getHours();
+  return hours;
+}
+
 function showForecast(response) {
+  let hourForecast = response.data.hourly;
+
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
+  let hourForecastElement = document.querySelector(`#hourForecast`);
   let forecastHTML = `<div class="row">`;
+  let hourForecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 6) {
+    if (index < 7 && index > 0) {
       forecastHTML =
         forecastHTML +
         `
@@ -55,6 +65,28 @@ function showForecast(response) {
 
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+  hourForecast.forEach(function (forecastHour, index) {
+    if (index < 7 && index > 0) {
+      hourForecastHTML =
+        hourForecastHTML +
+        `
+    <div class="col-2">
+      <div class="weather-forecast-date">${formatHour(forecastHour.dt)}:00</div>
+      <img src="http://openweathermap.org/img/wn/${
+        forecastHour.weather[0].icon
+      }@2x.png" alt="" width="42" />
+      <span class="weather-forecast-temperatures">
+        <span class="weather-forecast-temperatures-max">${Math.round(
+          forecastHour.temp
+        )}°</span>
+        </span>
+      </span>
+    </div>`;
+    }
+  });
+
+  hourForecastHTML = hourForecastHTML + `</div>`;
+  hourForecastElement.innerHTML = hourForecastHTML;
 }
 function getForecast(coordinates) {
   let apiKey = "c95d60a1e3adbeb286133f1ebebc2579";
@@ -67,12 +99,15 @@ function showTemperature(response) {
   let cityElement = document.querySelector("h1");
   let descriptionelement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
+  let maxTempElement = document.querySelector("#max-temp");
+  let minTempElement = document.querySelector("#min-temp");
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
   celsiusTemperature = response.data.main.temp;
-
+  maxTempElement.innerHTML = Math.round(response.data.main.temp_max);
+  minTempElement.innerHTML = Math.round(response.data.main.temp_min);
   templeratureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionelement.innerHTML = response.data.weather[0].description;

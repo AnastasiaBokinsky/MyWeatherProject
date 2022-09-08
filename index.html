@@ -17,7 +17,7 @@
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <div class="row-frame">
       <div class="weather-app-wrapper">
         <div class="weather-app">
           <div class="overview">
@@ -38,42 +38,45 @@
             <div class="row">
               <div class="conditions">
               <ul>
-                <li>Humidity: <span id="humidity">32</span>%</li>
-                <li>Wind: <span id="wind">23</span> m/h</li>
+                <li>Humidity: <span id="humidity"></span>%</li>
+                <li>Wind: <span id="wind"></span> m/h</li>
+                <li>Max temp: <span id="max-temp"></span>°C</li>
+                <li>Min temp: <span id="min-temp"></span>°C</li>
               </ul>
             </div>
           </div>
               
           </div>
           <div class="card hourly-forecast">
-            <div class="card-body">
-              <div class="weather-forecast-hourly" id="forecast-hourly"></div>
+            <div class="card-body" id="hourForecast">
             </div>
           </div>
             <div class="card">
               <div class="card-body">
             <div class="weather-forecast" id="forecast"></div> 
            </div>
-           <form id="search-form" class="mb-3">
-            <div class="col-3">
-              <input
-                type="search"
-                placeholder="Type a city.."
-                class="form-control"
-                id="city-input"
-                autocomplete="off"
-              />
-            </div>
-            <div class="col-3">
-              <input
-                type="submit"
-                value="Search"
-                class="btn btn-primary w-100"
-              />
+          
           </div>
-        </form> 
-          </div>
+          
         </div>
+        <form id="search-form" class="mb-3">
+          <div class="col-3">
+            <input
+              type="search"
+              placeholder="Type a city.."
+              class="form-control"
+              id="city-input"
+              autocomplete="off"
+            />
+          </div>
+          <div class="col-3">
+            <input
+              type="submit"
+              value="Search"
+              class="btn btn-primary w-100"
+            />
+        </div>
+      </form> 
       </div>
         <small>
           <a
